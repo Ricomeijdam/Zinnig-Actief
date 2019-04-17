@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ruimte index{% endblock %}
+
+{% block body %}
+    <h1>Ruimte index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Locatie</th>
+                <th>Plekken</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ruimte in ruimtes %}
+            <tr>
+                <td>{{ ruimte.id }}</td>
+                <td>{{ ruimte.locatie }}</td>
+                <td>{{ ruimte.plekken }}</td>
+                <td>
+                    <a href="{{ path('ruimte_show', {'id': ruimte.id}) }}">show</a>
+                    <a href="{{ path('ruimte_edit', {'id': ruimte.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ruimte_new') }}">Create new</a>
+{% endblock %}

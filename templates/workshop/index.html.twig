@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Workshop index{% endblock %}
+
+{% block body %}
+    <h1>Workshop index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Foto</th>
+                <th>Naam</th>
+                <th>Beschrijving</th>
+                <th>Prijs</th>
+                <th>Min</th>
+                <th>Max</th>
+                <th>Begin</th>
+                <th>Eind</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for workshop in workshops %}
+            <tr>
+                <td>{{ workshop.id }}</td>
+                <td><img src="{{ asset('uploads/workshop/') ~ workshop.foto}}"></td>
+                <td>{{ workshop.naam }}</td>
+                <td>{{ workshop.beschrijving }}</td>
+                <td>{{ workshop.prijs }}</td>
+                <td>{{ workshop.min }}</td>
+                <td>{{ workshop.max }}</td>
+                <td>{{ workshop.begin ? workshop.begin|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ workshop.eind ? workshop.eind|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('workshop_show', {'id': workshop.id}) }}">show</a>
+                    <a href="{{ path('workshop_edit', {'id': workshop.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('workshop_new') }}">Create new</a>
+{% endblock %}

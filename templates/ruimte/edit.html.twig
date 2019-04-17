@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Ruimte{% endblock %}
+
+{% block body %}
+    <h1>Edit Ruimte</h1>
+
+    {{ include('ruimte/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('ruimte_index') }}">back to list</a>
+
+    {{ include('ruimte/_delete_form.html.twig') }}
+{% endblock %}
